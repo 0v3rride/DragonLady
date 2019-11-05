@@ -1,32 +1,9 @@
-#figure out an easier way for authentication, see if you can get by it with pass the hash etc.
-
-#Authenticate here (done when import-module is ran against this psm1 file)
 $Tenant = $env:USERDNSDOMAIN;
 $Username = Read-Host -Prompt "Enter username to authenticate with";
 [securestring]$Password = Read-Host -Prompt ([string]::Format("Enter password for user {0}", $Username)) -AsSecureString;
 $Credential = New-Object System.Management.Automation.PSCredential($Username, $Password);
 
 Connect-AzureAD -TenantId $Tenant -Credential $Credential;
-
-
-# function Process-CustomObjects {
-#     Param( 
-#         [Parameter(ValueFromPipeline)]
-#         [PSCustomObject] $CustomObject
-#     )
-
-#     Begin{
-
-#     }
-
-#     Process{
-#         $CustomObject
-#     }
-
-#     End{
-
-#     }
-# }
 
 ################################
 # Tenant Enumeration Functions #
